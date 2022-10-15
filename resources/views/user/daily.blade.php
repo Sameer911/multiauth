@@ -21,11 +21,11 @@
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <label for="date">Order Date</label>
-                        <span   class="form-control" name="" id="date"> 
+                        <span   class="form-control" name="" id="date"> </span>
                     </div>
                     <div class="form-group col-md-6">
                         <label for="p_dait">Paid Date</label>
-                        <span   class="form-control" name="p_date" id="p_date">
+                        <span   class="form-control" name="p_date" id="p_date"></span>
 
                     </div>
                 </div>
@@ -33,29 +33,29 @@
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <label for="receiver">Receiver</label>
-                        <span  class="form-control" name="receiver" id="receiver">
+                        <span  class="form-control" name="receiver" id="receiver"></span>
                     </div>
                     <div class="form-group col-md-6">
                         <label for="father_name">Father Name:</label>
-                        <span  class="form-control" name="father_name"  id="father_name">
+                        <span  class="form-control" name="father_name"  id="father_name"></span>
                     </div>
                 </div>                      
                 
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <label for="sender">Sender:</label>
-                        <span  class="form-control" name="sender" id="sender">
+                        <span  class="form-control" name="sender" id="sender"></span>
                     </div>
                     <div class="form-group col-md-6">
                         <label for="cnic">CNIC:</label>
-                        <span  class="form-control" name="cnic" id="cnic">
+                        <span  class="form-control" name="cnic" id="cnic"></span>
                     </div>
                 </div>    
                 
                 <div class="form-row">
                 <div class="form-group col-md-12">
                         <label for="balance">Balance</label>
-                        <span type="number" class="form-control"  name="balance">
+                        <span type="number" class="form-control"  name="balance"></span>
                     </div>
                 
                 </div> 
@@ -273,13 +273,13 @@
                     success:function(response){
                         //  console.log(response);
                         $('#order').val(response.savetopaid.order);
-                        $('#p_date').val(response.savetopaid.p_date);
-                        $('#receiver').val(response.savetopaid.receiver);
-                        $('#father_name').val(response.savetopaid.father_name);
-                        $('#cnic').val(response.savetopaid.cnic);
-                        $('#sender').val(response.savetopaid.sender);
-                        $('#city').val(response.savetopaid.city);
-                        $('#balance').val(response.savetopaid.amount);
+                        $('#p_date').html(response.savetopaid.p_date);
+                        $('#receiver').html(response.savetopaid.receiver);
+                        $('#father_name').html(response.savetopaid.father_name);
+                        $('#cnic').html(response.savetopaid.cnic);
+                        $('#sender').html(response.savetopaid.sender);
+                        $('#city').html(response.savetopaid.city);
+                        $('#balance').html(response.savetopaid.amount);
                         $('#order_id').val(save_id);
                         
                     }
