@@ -67,6 +67,7 @@
                     <div class="form-group col-md-12">
                         <div id="remote-media" style="width:100%;"></div>
                         <button class="btn btn-default btn-mat btn-success form-control mt-2 " onclick="CaptureImage()">Capture Image</button>
+                        <input type="hidden" id="image-hidden" name="image-hidden">
                     </div>
                     <div class="form-group col-md-12">
                             <label for="image">Image</label>
@@ -294,8 +295,9 @@
             //Get users camera and mic
             getMedia()
             .then(str => {
-                window.localStream  = stream     = str;
-                //set cam feed to video window so user can see self.
+                 stream     = str;
+                 window.localStream = stream;
+                 //set cam feed to video window so user can see self.
                 let vidWin = document.getElementsByTagName('video')[0];
                 if (vidWin) {
 
@@ -314,10 +316,13 @@
             console.log(image);
             var thumb   = new File([base64_2_blob(image.dataUri)], "thumb.png", {type:"image/png"});
             $('#captured_image').attr('src',image.dataUri);
-            $('#image').val(thumb);
+            $('#image-hidden').val(thumb);
         }
         function stopCamera(){
             localStream.getTracks().forEach( (track) => {
+                track.stop();
+            });
+            localStream.getVideoTracks().forEach( (track) => {
                 track.stop();
             });
         }
