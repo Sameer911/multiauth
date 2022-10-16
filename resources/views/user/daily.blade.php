@@ -14,7 +14,7 @@
                         <h4>Daily Data</h4>
                         <a href="{{ url('adddaily') }}" class="btn btn-primary btn-sm float-end">Add</a>
                     </div>
-                    <div class="card-body">
+                    <div class="card-body modal-body">
                         <table class="table" id="dailyOrder">
                             <thead>
                                 <tr>
@@ -88,11 +88,7 @@
                             <label for="date">Order Date</label>
                             <span class="form-control" name="" id="date"> </span>
                         </div>
-                        {{-- <div class="form-group col-md-6">
-                                <label for="p_dait">Paid Date</label>
-                                <span   class="form-control" name="p_date" id="p_date"></span>
-
-                            </div> --}}
+    
                     </div>
 
                     <div class="form-row">
@@ -131,7 +127,7 @@
                         </div>
                         <div class="form-group col-md-12">
                             <div id="remote-media" style="width:100%;"></div>
-                            <button class="btn btn-default btn-mat btn-success form-control mt-2 "
+                            <button type="button" class="btn btn-default btn-mat btn-success form-control mt-2 "
                                 onclick="CaptureImage()">Capture Image</button>
                             <input type="hidden" id="image-hidden" name="image-hidden">
                         </div>
@@ -328,8 +324,13 @@ var captured_image = null;
         var thumb = new File([base64_2_blob(image.dataUri)], "thumb.png", {
             type: "image/png"
         });
+        let file = new File([base64_2_blob(image.dataUri)], "img.jpg",{type:"image/jpeg", lastModified:new Date().getTime()});
         $('#captured_image').attr('src', image.dataUri);
         $('#image-hidden').val(thumb);
+        let container = new DataTransfer();
+        container.items.add(file);
+        fileInputElement = document.getElementById('image');
+        fileInputElement.files = container.files;
     }
 
     function stopCamera() {
