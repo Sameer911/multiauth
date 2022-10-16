@@ -13,7 +13,7 @@ class AdminController extends Controller
 {
     public function index()
     {
-        $credit = Credit::all();
+        $credit = Credit::orderBy('created_at', 'desc')->get();
         $Cashinhand = cashInHandAmount();
         return view('admin.index' , compact('credit','Cashinhand'));
     }
@@ -21,8 +21,8 @@ class AdminController extends Controller
 
     public function allorders()
     {
-        $daily_orders = DailyOrder::all();
-        $paidorders = PaidOrder::all();
+        $daily_orders = DailyOrder::orderBy('created_at', 'desc')->get();
+        $paidorders = PaidOrder::orderBy('created_at', 'desc')->get();
         $Cashinhand = cashInHandAmount();
         return view('admin.allorder',compact('daily_orders', 'paidorders', 'Cashinhand'));
     }
@@ -45,7 +45,7 @@ class AdminController extends Controller
 
     public function paid()
     {
-        $paid_orders = PaidOrder::all();
+        $paid_orders = PaidOrder::orderBy('created_at', 'desc')->get();
         return view('admin.paidorder', compact('paid_orders'));
     }
 
@@ -62,11 +62,27 @@ class AdminController extends Controller
         }
 
         $paid->date = $request->input('date');
-        $paid->p_date = $request->input('p_date');
+        // $paid->p_date = $request->input('p_date');
         $paid->order_id = $request->input('order_id');
         $paid->amount = $request->input('amount');
         $paid->save();
 
+        $order_id = $request->input('order_id');
+        if ($order_id ) {
+            $order = DailyOrder::find($order_id);
+            $order->status = 'paid';
+            $order->save();
+
+            $cash_in_hand = new CashInHand();
+            $cash_in_hand->debit = $request->input('amount');
+            $description = 'This Amount paid to ' . $order->receiver . '('.$order->cnic.')';
+            $cash_in_hand->description= $description;
+            $cash_in_hand->save();
+        }
+
+        
+        
+         
         return redirect()->back()->with('status', 'Data Inserted');
     } 
 

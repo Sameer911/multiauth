@@ -26,7 +26,7 @@ class OrderSeeder extends Seeder
             $order->father_name = $faker->name;
             $order->cnic = "000";
             $order->amount = "000";
-            $order->status = "paid";
+            $order->status = "pending";
             $order->user_id = "1";
             $order->entry_date = $faker->date;
     

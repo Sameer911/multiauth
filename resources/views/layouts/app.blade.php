@@ -16,8 +16,9 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
 	<link rel="stylesheet" type="text/css" href="{{ asset('frontend/vendor/animate/animate.css') }}">
-    
+    <link rel="stylesheet" href="//cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
     <!-- Styles -->
+    <link rel="stylesheet" href="	https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css">
     <link href="{{ asset('frontend/css/util.css') }}" rel="stylesheet">
     <link href="{{ asset('frontend/css/main.css') }}" rel="stylesheet">
 
@@ -92,6 +93,8 @@
     <script src="{{ asset('frontend/vendor/bootstrap/js/bootstrap.min.js"') }}"></script>
     <script src="{{ asset('frontend/vendor/select2/select2.min.js') }}"></script>
     <script src="{{ asset('frontend/vendor/tilt/tilt.jquery.min.js') }}"></script>
+    <script src="//cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+    <script src="	https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
 
 
 
@@ -102,6 +105,9 @@
 		$('.js-tilt').tilt({
 			scale: 1.1
 		})
+
+
 	</script>
+    @yield('scripts')
 </body>
 </html>

@@ -22,4 +22,11 @@ function cashInHandAmount()
         $result = $format;
     }
     return $result;
-}   
+
+    
+} 
+
+function formatNumber($value)
+{
+    return  number_format($value, 2, '.', ',');
+}

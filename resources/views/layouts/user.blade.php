@@ -1,157 +1,248 @@
-<!doctype html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<!DOCTYPE html>
+<html lang="en">
+
+
+<!-- index.html  21 Nov 2019 03:44:50 GMT -->
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8">
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
+  <title>No-Name</title>
+  <!-- General CSS Files -->
+  <link rel="stylesheet" href="{{asset('Admin/css/app.min.css')}}">
 
-    <!-- CSRF Token -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+  <link rel="stylesheet" href="https://cdn.datatables.net/rowreorder/1.2.8/css/rowReorder.dataTables.min.css">
 
-    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-        rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.3.0/css/responsive.dataTables.min.css">
 
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css">
 
-    <link rel="stylesheet" href="//cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
-    <!-- Styles -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-
-    <link href="{{ asset('admin/css/sb-admin-2.min.css') }}" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.2.3/css/buttons.dataTables.min.css">
 
 
+  <!-- Template CSS -->
+  <link rel="stylesheet" href="{{asset('Admin/css/style.css')}}">
+  <link rel="stylesheet" href="{{asset('Admin/css/components.css')}}">
+
+
+  <!-- Custom style CSS -->
+  <link rel="stylesheet" href="{{asset('Admin/css/custom.css')}}">
+
+  <link rel='shortcut icon' type='image/x-icon' href='{{asset('Admin/img/favicon.ico')}}' />
 
 </head>
-<body>
-    {{-- <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-            <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
+    
+<div id="app">
+    @include('layouts.userinc.sidebar')
+
+    
+    <div class="main-wrapper main-wrapper-1">
+    
+        @include('layouts.userinc.navbar')
+
+
+        <div id="app">
+          <div class="main-wrapper main-wrapper-1">
+            
+            <div class="main-content">
+            
+              @yield('content')
+              <div class="settingSidebar">
+                <a href="javascript:void(0)" class="settingPanelToggle"> <i class="fa fa-spin fa-cog"></i>
                 </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto">
-
-                    </ul>
-
-                    <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ml-auto">
-                        <!-- Authentication Links -->
-                        @guest
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                            </li>
-                            @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                </li>
-                            @endif
-                            
-                        @else
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }} <span class="caret"></span>
-                                </a>
-
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
-
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li>                           
-                        @endguest
-                      
-                    </ul>
-                </div>
-            </div>
-        </nav>
-
-        <main class="py-4">
-            @yield('content')
-        </main>
-    </div> --}}
-
-    <div id="wrapper">
-        @include('layouts.userinc.sidebar')
-
-            <div id="content-wrapper" class="d-flex flex-column">
-                @include('layouts.userinc.navbar')
-
-                <div class="container">                          
-
-                    <div class="container">
-                            @yield('content')
+                <div class="settingSidebar-body ps-container ps-theme-default">
+                  <div class=" fade show active">
+                    <div class="setting-panel-header">Setting Panel
                     </div>
-
+                    <div class="p-15 border-bottom">
+                      <h6 class="font-medium m-b-10">Select Layout</h6>
+                      <div class="selectgroup layout-color w-50">
+                        <label class="selectgroup-item">
+                          <input type="radio" name="value" value="1" class="selectgroup-input-radio select-layout" checked>
+                          <span class="selectgroup-button">Light</span>
+                        </label>
+                        <label class="selectgroup-item">
+                          <input type="radio" name="value" value="2" class="selectgroup-input-radio select-layout">
+                          <span class="selectgroup-button">Dark</span>
+                        </label>
+                      </div>
+                    </div>
+                    <div class="p-15 border-bottom">
+                      <h6 class="font-medium m-b-10">Sidebar Color</h6>
+                      <div class="selectgroup selectgroup-pills sidebar-color">
+                        <label class="selectgroup-item">
+                          <input type="radio" name="icon-input" value="1" class="selectgroup-input select-sidebar">
+                          <span class="selectgroup-button selectgroup-button-icon" data-toggle="tooltip"
+                            data-original-title="Light Sidebar"><i class="fas fa-sun"></i></span>
+                        </label>
+                        <label class="selectgroup-item">
+                          <input type="radio" name="icon-input" value="2" class="selectgroup-input select-sidebar" checked>
+                          <span class="selectgroup-button selectgroup-button-icon" data-toggle="tooltip"
+                            data-original-title="Dark Sidebar"><i class="fas fa-moon"></i></span>
+                        </label>
+                      </div>
+                    </div>
+                    <div class="p-15 border-bottom">
+                      <h6 class="font-medium m-b-10">Color Theme</h6>
+                      <div class="theme-setting-options">
+                        <ul class="choose-theme list-unstyled mb-0">
+                          <li title="white" class="active">
+                            <div class="white"></div>
+                          </li>
+                          <li title="cyan">
+                            <div class="cyan"></div>
+                          </li>
+                          <li title="black">
+                            <div class="black"></div>
+                          </li>
+                          <li title="purple">
+                            <div class="purple"></div>
+                          </li>
+                          <li title="orange">
+                            <div class="orange"></div>
+                          </li>
+                          <li title="green">
+                            <div class="green"></div>
+                          </li>
+                          <li title="red">
+                            <div class="red"></div>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                    <div class="p-15 border-bottom">
+                      <div class="theme-setting-options">
+                        <label class="m-b-0">
+                          <input type="checkbox" name="custom-switch-checkbox" class="custom-switch-input"
+                            id="mini_sidebar_setting">
+                          <span class="custom-switch-indicator"></span>
+                          <span class="control-label p-l-10">Mini Sidebar</span>
+                        </label>
+                      </div>
+                    </div>
+                    <div class="p-15 border-bottom">
+                      <div class="theme-setting-options">
+                        <label class="m-b-0">
+                          <input type="checkbox" name="custom-switch-checkbox" class="custom-switch-input"
+                            id="sticky_header_setting">
+                          <span class="custom-switch-indicator"></span>
+                          <span class="control-label p-l-10">Sticky Header</span>
+                        </label>
+                      </div>
+                    </div>
+                    <div class="mt-4 mb-4 p-3 align-center rt-sidebar-last-ele">
+                      <a href="#" class="btn btn-icon icon-left btn-primary btn-restore-theme">
+                        <i class="fas fa-undo"></i> Restore Default
+                      </a>
+                    </div>
+                  </div>
                 </div>
+              </div>
+            </div>
+          </div>
+      </div>
+       
 
-            </div>    
 
 
-    </div>    
-    @include('layouts.userinc.footer')
+      @include('layouts.userinc.footer')
 
-    <script
-            src="https://code.jquery.com/jquery-3.6.1.min.js"
-            integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ="
-            crossorigin="anonymous"></script>
+      </div>    
+    
+</div>   
 
-    <script src="//cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+   
+
       
+    
+    
+
+    {{-- <script src="{{asset('Admin/js/jquery-3.4.1.min.js')}}"></script>
+     --}}
+     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+     {{-- <script src="{{asset('Admin/js/jquery-3.4.1.min.js')}}"></script> --}}
+ 
+ 
+ 
+     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+ 
+     <!-- General JS Scripts -->
+     <script src="{{asset('Admin/js/app.min.js')}}"></script>
+ 
+    
+ 
+ 
+     <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+ 
+     <script src="https://cdn.datatables.net/rowreorder/1.2.8/js/dataTables.rowReorder.min.js"></script>
+ 
+ 
+     <script src="https://cdn.datatables.net/responsive/2.3.0/js/dataTables.responsive.min.js"></script>
+     <script src="https://cdn.datatables.net/buttons/2.2.3/js/dataTables.buttons.min.js"></script>
+
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.html5.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.print.min.js"></script>
+     
+     <!-- JS Libraies -->
+     <script src="{{asset('Admin/bundles/apexcharts/apexcharts.min.js')}}"></script>
+   
+     <!-- Page Specific JS File -->
+     <script src="{{asset('Admin/js/page/index.js')}}"></script>
+   
+     <!-- Template JS File -->
+     <script src="{{asset('Admin/js/scripts.js')}}"></script>
+   
+     <!-- Custom JS File -->
+     <script src="{{asset('Admin/js/custom.js')}}"></script>
     <script>
 
-        $(document).ready(function(){
+      $(document).ready(function(){
 
-            $(document).on('click','.editbtn', function(){
+          $(document).on('click','.editbtn', function(){
 
-                var daily_id = $(this).val();
+              var daily_id = $(this).val();
 
-                $('#editModal').modal('show');
+              $('#editModal').modal('show');
 
-                $.ajax({
-                    type:'GET',
-                    url: "/edit-data/"+daily_id,
-                    success:function(response){
-                        // console.log(response);
-                        $('#order_id').val(response.daily.order_id);
-                        $('#date').val(response.daily.date);
-                        $('#city').val(response.daily.city);
-                        $('#sender').val(response.daily.sender);
-                        $('#receiver').val(response.daily.receiver);
-                        $('#father_name').val(response.daily.father_name);
-                        $('#cnic').val(response.daily.cnic);
-                        $('#amount').val(response.daily.amount);
-                        $('#status').val(response.daily.status);
-                        $('#user_id').val(response.daily.user_id);
-                        $('#entry_date').val(response.daily.entry_date);
-                        $('#daily_id').val(daily_id);
-                    }
-                });
+              $.ajax({
+                  type:'GET',
+                  url: "/edit-data/"+daily_id,
+                  success:function(response){
+                      // console.log(response);
+                      $('#order_id').val(response.daily.order_id);
+                      $('#date').val(response.daily.date);
+                      $('#city').val(response.daily.city);
+                      $('#sender').val(response.daily.sender);
+                      $('#receiver').val(response.daily.receiver);
+                      $('#father_name').val(response.daily.father_name);
+                      $('#cnic').val(response.daily.cnic);
+                      $('#amount').val(response.daily.amount);
+                      $('#status').val(response.daily.status);
+                      $('#user_id').val(response.daily.user_id);
+                      $('#entry_date').val(response.daily.entry_date);
+                      $('#daily_id').val(daily_id);
+                  }
+              });
 
-            });
-        });
+          });
+      });
 
 
-        $(document).ready( function () {
-            $('.myTable').DataTable();
-        });
-     
-    </script>
-    
+      
+   
+  </script>
+  
+    @yield('scripts')
 
-    
-</body>
-</html>
+  
+  </body>
+  
+  
+  <!-- index.html  21 Nov 2019 03:47:04 GMT -->
+  </html>

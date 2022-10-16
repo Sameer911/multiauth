@@ -23,11 +23,7 @@
                         <label for="date">Order Date</label>
                         <input type="text"  name="" id="date"> 
                     </div>
-                    <div class="form-group col-md-6">
-                        <label for="p_dait">Paid Date</label>
-                        <input type="date" class="form-control" id="date" name="p_date">
-
-                    </div>
+                   
                 </div>
  
                 <div class="form-row">
@@ -53,14 +49,11 @@
                 </div>    
                 
                 <div class="form-row">
-                    <div class="form-group col-md-6">
+                    <div class="form-group col-md-12">
                         <label for="amount">Amount</label>
                         <input type="number" class="form-control" id="amount" name="amount">
                     </div>
-                    <div class="form-group col-md-6">
-                        <label for="paid">Paid</label>
-                        <input type="number" class="form-control"  name="paid">
-                    </div>
+                   
                 </div> 
                 <div class="form-row">
                     <div class="form-group col-md-12">
@@ -71,11 +64,18 @@
                 </div> 
                 <div class="form-row">
                     <div class="form-group col-md-12">
+                        <div id="remote-media" style="width:100%;"></div>
+                        <button class="btn btn-default btn-mat btn-success form-control mt-2 "
+                            onclick="CaptureImage()">Capture Image</button>
+                        <input type="hidden" id="image-hidden" name="image-hidden">
+                    </div>
+                   
+                </div> 
+                <div class="form-row">
+                    <div class="form-group col-md-12">
                         <label for="image">Image</label>
-                        <input type=button value="Take Image" onClick="take_snapshot()" class="btn btn-primary btn-sm">
-                        <input type="hidden" name="image" class="image-tag">
-                         
-                        {{-- <input type="file" class="form-control"  name="image" required> --}}
+                        <div><img id="captured_image" width="100%"> </div>
+                        <input type="file" id="image" class="form-control" name="image" required>
                     </div>
                 </div> 
 
@@ -93,6 +93,7 @@
 
 
 @section('content')
+
 <div class="container">
     <div class="row">
         <div class="com-md-12 mt-1">
@@ -104,16 +105,8 @@
                     <h4>Daily Data</h4>
                     <a href="{{url('add-daily-data')}}" class="btn btn-primary btn-sm float-end">Add</a>
                 </div>
-              </div>
-        </div>
-    </div>
-</div>
-        
-
-<div class="container-fluid">
-            <div class="row">
-                <div class="col-md-12 mt-5">
-                    <table class="myTable table table-striped">
+                <div class="card-body">
+                    <table class="table" id="allOrders">
                         <thead>
                             <tr>
                                 <td>ID</td>
@@ -141,15 +134,12 @@
                                             <td>{{$item->order}}</td>
                                             <td>{{$item->date}}</td>
                                             <td>{{$item->cnic}}</td>
-                                            <td><?php echo number_format($item->amount) ; ?></td>
+                                            <td>{{formatNumber($item->amount)}}</td>
                                             <td>{{$item->status}}</td>
                                             <td>
                                                 <a href="{{url('editallorder/'.$item->id)}}" class="btn btn-primary btnedit btn-sm">Edit</a>
-                                                {{-- <button type="button" value="{{$item->id}}" class="btn btn-primary btnedit btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                                    Edit
-                                                  </button> --}}
+ 
                                                 <a href="{{ url('delete/' . $item->id) }}" class="btn btn-danger btn-sm">Delete</a>
-                                                  
                                             </td>
                                             <td>
                                                 <button type="button" value="{{$item->id}}" class="btn btn-success savebtn btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal">
@@ -157,14 +147,18 @@
                                                   </button>
                                             </td>
                                             
-                                        </tr>
+                                </tr>
         
                             @endforeach
                         </tbody>
                     </table>
                 </div>
-            </div>
+              </div>
         </div>
+    </div>
+</div>
+        
+
 
 
       {{-- Edit Modal --}}
@@ -262,26 +256,6 @@
 </div> --}}
       {{-- END--Edit Modal --}}
 
-      
-      {{-- <div class="container">
-                <form method="POST" action="storeImage.php">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div id="my_camera"></div>
-                            <br/>
-                            
-                            <input type="hidden" name="image" class="image-tag">
-                        </div>
-                        <div class="col-md-6">
-                            <div id="results">Your captured image will appear here...</div>
-                        </div>
-                        <div class="col-md-12 text-center">
-                            <br/>
-                            <button class="btn btn-success">Submit</button>
-                        </div>
-                    </div>
-                </form>
-            </div> --}}
 
 
 
@@ -321,26 +295,23 @@
             });
         });
 
-        Webcam.set({
-        width: 490,
-        height: 390,
-        image_format: 'jpeg',
-        jpeg_quality: 90
-    });
-  
-    Webcam.attach( '#my_camera' );
-  
-    function take_snapshot() {
-        Webcam.snap( function(data_uri) {
-            $(".image-tag").val(data_uri);
-            document.getElementById('results').innerHTML = '<img src="'+data_uri+'"/>';
-        } );
-    }
 
 
-        $(document).ready( function () {
-            $('.myTable').DataTable();
-        });
+    $(document).ready(function() {
+      var table = $('#allOrders').DataTable( {
+          rowReorder: {
+              selector: 'td:nth-child(2)'
+          },
+          responsive: true,
+          order: [],
+          dom: 'Bfrtip',
+          buttons: [
+              'pdf', 'print'
+          ]
+      } );
+      });
+
+        
       </script>
 
 @endsection

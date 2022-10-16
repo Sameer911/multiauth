@@ -1,40 +1,26 @@
-<nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
-    <!-- Sidebar Toggle (Topbar) -->
-    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-        <i class="fa fa-bars"></i>
-    </button>
-
-    {{-- <!-- Topbar Search -->
-    <form
-        class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-        <div class="input-group">
-            <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
-                aria-label="Search" aria-describedby="basic-addon2">
-            <div class="input-group-append">
-                <button class="btn btn-primary" type="button">
-                    <i class="fas fa-search fa-sm"></i>
-                </button>
-            </div>
-        </div>
-    </form> --}}
-
-    <!-- Topbar Navbar -->
-    <ul class="navbar-nav ml-auto">
-
-        
-
-        <div class="topbar-divider d-none d-sm-block"></div>
-
-        
-        <!-- Nav Item - User Information -->
-        <div class="">
-            <a class="btn btn-danger" href="{{url('logout')}}">
-              Logout
-            </a>
-
-        </div>
-
+<div class="navbar-bg"></div>
+<nav class="navbar navbar-expand-lg main-navbar sticky">
+  <div class="form-inline mr-auto">
+    <ul class="navbar-nav mr-3">
+      <li><a href="#" data-toggle="sidebar" class="nav-link nav-link-lg
+                              collapse-btn"> <i data-feather="align-justify"></i></a></li>
+      
     </ul>
-
+  </div>
+  <ul class="navbar-nav navbar-right">   
+    
+    <li class="dropdown"><a href="#" data-toggle="dropdown"
+        class="nav-link dropdown-toggle nav-link-lg nav-link-user"> <img alt="image" src="{{asset('Admin/img/user.png')}}"
+          class="user-img-radious-style"> <span class="d-sm-none d-lg-inline-block"></span></a>
+      <div class="dropdown-menu dropdown-menu-right pullDown">
+        <div class="dropdown-title">{{Auth::user()->name}}</div>
+       
+        <div class="dropdown-divider"></div>
+        <a href="{{url('logout')}}" class="dropdown-item has-icon text-danger"> <i class="fas fa-sign-out-alt"></i>
+          Logout
+        </a>
+      </div>
+    </li>
+  </ul>
 </nav>

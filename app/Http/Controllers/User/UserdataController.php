@@ -21,7 +21,7 @@ class UserdataController extends Controller
     {
         $debit = 0;
         $credit = 0;
-        $all = CashInHand::all();
+        $all = CashInHand::orderBy('created_at', 'desc')->get();
 
         foreach ($all as $key => $value) {
             if (!empty($value->credit)) {
@@ -40,7 +40,7 @@ class UserdataController extends Controller
 
     public function daily()
     {
-        $daily = DailyOrder::all();
+        $daily = DailyOrder::orderBy('created_at', 'desc')->get();
         return view('user.daily',compact('daily'));
     }
 
@@ -59,7 +59,7 @@ class UserdataController extends Controller
         $daily_order->father_name = $request->input('father_name');
         $daily_order->cnic = $request->input('cnic');
         $daily_order->amount = $request->input('amount');
-        $daily_order->status = $request->input('status');
+        // $daily_order->status = $request->input('status');
         $daily_order->user_id = $request->input('user_id');
         $daily_order->entry_date = $request->input('entry_date');
  
@@ -101,7 +101,7 @@ class UserdataController extends Controller
 
     public function paidorderu()
     {
-        $paid_orders = PaidOrder::all();
+        $paid_orders = PaidOrder::orderBy('created_at', 'desc')->get();
         return view('user.paidorder', compact('paid_orders'));
     }
 

@@ -9,7 +9,7 @@ class CashInHandController extends Controller
 {
     public function index()
     {
-            $debit_all = CashInHand::all();
+            $debit_all = CashInHand::orderBy('created_at', 'desc')->get();
             $Cashinhand = cashInHandAmount();
             return view('admin.cashinhand',compact('debit_all', 'Cashinhand'));
     }

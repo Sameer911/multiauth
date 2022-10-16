@@ -1,15 +1,3 @@
-{{-- <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link href="{{ asset('admin/css/sb-admin-2.min.css') }}" rel="stylesheet">
-    <link rel="stylesheet" href="//cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
-</head>
-<body> --}}
 
   @extends('layouts.master')
   @section('content')
@@ -77,7 +65,7 @@
                     </div>
                             
                             <div class="card-body">
-                              <table class="table myTable table-striped">
+                              <table class="table  table-striped" id="cashtable">
                                 <thead>
                                   <tr>
                                     <td>ID</td>
@@ -190,27 +178,30 @@
 
 
 
- $(document).ready( function () {
-     $('.myTable').DataTable();
- });
+
+ 
 </script>
+
+
+    <script>
+      $(document).ready(function() {
+      var table = $('#cashtable').DataTable( {
+          rowReorder: {
+              selector: 'td:nth-child(2)'
+          },
+          responsive: true,
+          order: [],
+          dom: 'Bfrtip',
+          buttons: [
+              'pdf', 'print'
+          ]
+      } );
+      });
+    </script>
+
 @endsection
 
 
-
-
- <script
-  src="https://code.jquery.com/jquery-3.6.1.min.js"
-  integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ="
-  crossorigin="anonymous"></script>
-
-  <script src="//cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
-
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
- 
-
-</body>
-</html>
 
 
 

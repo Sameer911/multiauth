@@ -54,16 +54,16 @@
              
           </div>     
           <div class="form-row">
-              <div class="form-group col-md-6">
+              {{-- <div class="form-group col-md-6">
                   <label for="status">Status</label>
                   <input type="text" class="form-control"  name="status" placeholder="Status" required>
-              </div>
+              </div> --}}
               {{-- <div class="form-group col-md-6">
                   <label for="user_id">User ID</label>
                   <input type="text" class="form-control"  name="user_id" placeholder="User ID" required>
               </div> --}}
           
-           <div class="form-group col-md-6">
+           <div class="form-group col-md-12">
               <label for="Amount">Amount</label>
               <input type="number" class="form-control"  name="amount" placeholder="Amount" required>
           </div>
