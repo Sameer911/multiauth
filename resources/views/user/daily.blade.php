@@ -69,13 +69,13 @@
     </div>
 
     <!-- Save--Modal -->
-<div class="modal fade" id="ModalSave" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+<div class="modal" id="ModalSave" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
     aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <h1 class="modal-title fs-5" id="staticBackdropLabel">Save To Paid</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true" aria-label="Close"></button>
             </div>
             <div class="card-body">
 
@@ -268,6 +268,7 @@ var captured_image = null;
         $(document).on('click', '.btnsave', function() {
             var save_id = $(this).val();
             $('#ModalSave').modal('show');
+            $('#captured_image').attr('src','');
             ready();
             $.ajax({
                 type: "GET",
@@ -342,6 +343,9 @@ var captured_image = null;
         });
     }
  
+    $(document).on('click','.btn-close',function(){
+      $('#ModalSave').modal('hide');    
+    });
 
 
 

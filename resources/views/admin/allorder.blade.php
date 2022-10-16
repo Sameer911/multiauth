@@ -8,7 +8,7 @@
 
 
     <!-- Save--Modal -->
-    <div class="modal fade" id="ModalSave" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    <div class="modal" id="ModalSave" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
     aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -283,6 +283,7 @@
         $(document).on('click', '.savebtn', function() {
             var save_id = $(this).val();
             $('#ModalSave').modal('show');
+            $('#captured_image').attr('src','');
             ready();
             $.ajax({
                 type: "GET",
@@ -444,6 +445,9 @@
                 track.stop();
             });
         }
+        $(document).on('click','.btn-close',function(){
+            $('#ModalSave').modal('hide');    
+        });
       </script>
 
 @endsection
