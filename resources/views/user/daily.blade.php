@@ -14,7 +14,7 @@
                         <h4>Daily Data</h4>
                         <a href="{{ url('adddaily') }}" class="btn btn-primary btn-sm float-end">Add</a>
                     </div>
-                    <div class="card-body modal-body">
+                    <div class="card-body ">
                         <table class="table" id="dailyOrder">
                             <thead>
                                 <tr>
@@ -77,7 +77,7 @@
                 <h1 class="modal-title fs-5" id="staticBackdropLabel">Save To Paid</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true" aria-label="Close"></button>
             </div>
-            <div class="card-body">
+            <div class="card-body modal-body">
 
                 <form action="{{ url('insert-paid') }}" method="POST" enctype="multipart/form-data">
                     @csrf
