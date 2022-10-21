@@ -3,6 +3,7 @@
 /public/storage
 /public/C:\
 /storage/*.key
+/bootsrap/cache
 /vendor
 .env
 .env.backup
