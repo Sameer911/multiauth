@@ -21,6 +21,8 @@
 
   <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.2.3/css/buttons.dataTables.min.css">
 
+  <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" /> 
+
   <!-- Template CSS -->
   <link rel="stylesheet" href="{{asset('Admin/css/style.css')}}">
   <link rel="stylesheet" href="{{asset('Admin/css/components.css')}}">
@@ -193,6 +195,8 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
 <script src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.html5.min.js"></script>
 <script src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.print.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     
     <!-- JS Libraies -->
     <script src="{{asset('Admin/bundles/apexcharts/apexcharts.min.js')}}"></script>

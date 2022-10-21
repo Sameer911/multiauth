@@ -3,70 +3,81 @@
 
 
 @section('content')
-    <div class="container">
-        <div class="row">
-            <div class="com-md-12 mt-2">
-                @if (session('status'))
-                    <h5 class="alert alert-success">{{ session('status') }}</h5>
-                @endif
+
+
+
+
+    <section class="section">
+        <div class="section-body">
+          <div class="row">
+            <div class="col-12">
+                @if(session('status'))
+                <h5 class="alert alert-success">{{session('status')}}</h5>
+              @endif
+             
+              <div class="card">
                 <div class="card">
                     <div class="card-header">
                         <h4>Daily Data</h4>
-                        <a href="{{ url('adddaily') }}" class="btn btn-primary btn-sm float-end">Add</a>
+                        {{-- <a href="{{ url('adddaily') }}" class="btn btn-primary btn-sm float-end">Add</a> --}}
                     </div>
-                    <div class="card-body ">
-                        <table class="table" id="dailyOrder">
-                            <thead>
+                <div class="card-body">
+                  <div class="table-responsive">
+                    <table class="table table-striped" id="dailyOrder">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Receiver</th>
+                                <th>Father Name</th>
+                                <th>CNIC</th>
+                                <th>Sender</th>
+                                <th>Amount</th>
+                                <th>City</th>
+                                <th>Status</th>
+                                <th>Date</th>
+                                <th>Entry Date</th>
+                                {{-- <th>Action</th> --}}
+                                <th>Save</th>
+            
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($daily as $item)
                                 <tr>
-                                    <th>ID</th>
-                                    <th>Receiver</th>
-                                    <th>Father Name</th>
-                                    <th>CNIC</th>
-                                    <th>Sender</th>
-                                    <th>Amount</th>
-                                    <th>City</th>
-                                    <th>Status</th>
-                                    <th>Date</th>
-                                    <th>Entry Date</th>
-                                    <th>Action</th>
-                                    <th>Save</th>
-                
+                                    <td>{{ $item->id }}</td>
+                                    <td>{{ $item->receiver }}</td>
+                                    <td>{{ $item->father_name }}</td>
+                                    <td>{{ $item->cnic }}</td>
+                                    <td>{{ $item->sender }}</td>
+                                    <td>{{ formatNumber($item->amount) }}</td>
+                                    <td>{{ $item->city }}</td>
+                                    <td>{{ $item->status }}</td>
+                                    <td>{{ $item->date }}</td>
+                                    <td>{{ $item->entry_date }}</td>
+                                    {{-- <td>
+                                        <a href="{{ url('edit/' . $item->id) }}" class="btn btn-primary neweditbn btn-sm">Edit</a>
+                                        <a href="{{ url('delete-daily/' . $item->id) }}" class="btn btn-danger btn-sm">Delete</a>
+                                    </td> --}}
+                                    <td>
+                                        <button type="button" value="{{ $item->id }}" class="btn btn-success btnsave btn-sm"
+                                            data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                            Pay Order
+                                        </button>
+                                    </td>
+            
                                 </tr>
-                            </thead>
-                            <tbody>
-                                @foreach ($daily as $item)
-                                    <tr>
-                                        <td>{{ $item->id }}</td>
-                                        <td>{{ $item->receiver }}</td>
-                                        <td>{{ $item->father_name }}</td>
-                                        <td>{{ $item->cnic }}</td>
-                                        <td>{{ $item->sender }}</td>
-                                        <td>{{ formatNumber($item->amount) }}</td>
-                                        <td>{{ $item->city }}</td>
-                                        <td>{{ $item->status }}</td>
-                                        <td>{{ $item->date }}</td>
-                                        <td>{{ $item->entry_date }}</td>
-                                        <td>
-                                            <a href="{{ url('edit/' . $item->id) }}" class="btn btn-primary neweditbn btn-sm">Edit</a>
-                                            {{-- <button type="button" value="{{$item->id}}" class="btn btn-primary neweditbn btn-sm">Edit</button> --}}
-                                            <a href="{{ url('delete-daily/' . $item->id) }}" class="btn btn-danger btn-sm">Delete</a>
-                                        </td>
-                                        <td>
-                                            <button type="button" value="{{ $item->id }}" class="btn btn-success btnsave btn-sm"
-                                                data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                                Pay Order
-                                            </button>
-                                        </td>
-                
-                                    </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
-                    </div>
+                            @endforeach
+                        </tbody>
+                    </table>
+                  </div>
                 </div>
+              </div>
             </div>
+          </div>
+    
+          
         </div>
-    </div>
+    </section>
 
     <!-- Save--Modal -->
 <div class="modal" id="ModalSave" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\CashInHand;
+use App\User;
 
 use Illuminate\Http\Request;
 
@@ -28,7 +29,7 @@ class CashInHandController extends Controller
 
             $debit->save();
 
-            return redirect()->back()->with('status', 'Data Inserted');
+            return redirect()->route('cash')->with('status', 'Data Inserted');
         }
 
         public function debitedit($id)
@@ -59,5 +60,11 @@ class CashInHandController extends Controller
             $debit_delete->delete();
             return redirect()->back()->with('status', 'Data Deleted'); 
             
+        }
+
+        public function cashapage()
+        {
+            $users = User::all();
+            return view('admin.addcashinhand', compact('users'));
         }
 }

@@ -3,6 +3,8 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Eloquent\SoftDeletes;
+
 
 class CreatePaidOrdersTable extends Migration
 {
@@ -15,7 +17,8 @@ class CreatePaidOrdersTable extends Migration
     {
         Schema::create('paid_orders', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('order_id')->unsigned();;
+            $table->integer('order_id')->nullable()->default(0);
+            $table->integer('user_id')->nullable()->default(0);
             $table->string('date')->nullable()->default('');
             $table->double('amount')->nullable()->default(0);
             $table->string('image');

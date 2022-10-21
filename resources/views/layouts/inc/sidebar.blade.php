@@ -30,6 +30,15 @@
               <li><a class="nav-link" href="{{url('allorders')}}">All Orders</a></li>
             </ul>
           </li>
+          <li class="dropdown">
+            <a href="#" class="menu-toggle nav-link has-dropdown"><i
+                data-feather="command"></i><span>Users</span></a>
+            <ul class="dropdown-menu">
+              <li><a class="nav-link" href="{{url('users')}}">Users</a></li>
+              <li><a class="nav-link" href="{{url('deleted-user')}}">Trash</a></li>
+
+            </ul>
+          </li>
       </ul>
     </aside>
 </div>

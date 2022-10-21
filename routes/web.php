@@ -49,7 +49,7 @@ Route::middleware(['auth', 'is_admin'])->group(function(){
     
     Route::get('add-daily-data', 'Admin\AdminController@adddailydata');
 
-    Route::get('allorders', 'Admin\AdminController@allorders');
+    Route::get('allorders', 'Admin\AdminController@allorders')->name('allorders');
 
     Route::get('editallorder/{id}', 'Admin\AdminController@editpage');
 
@@ -67,7 +67,7 @@ Route::middleware(['auth', 'is_admin'])->group(function(){
 
     // Route::put('update-paid/{id}', 'Admin\AdminController@updatepaid');
 
-    Route::get('cashinhand','CashInHandController@index');
+    Route::get('cashinhand','CashInHandController@index')->name('cash');
 
     Route::post('debit-insert', 'CashInHandController@debitinsert');
 
@@ -80,6 +80,21 @@ Route::middleware(['auth', 'is_admin'])->group(function(){
     Route::get('save-to-paid/{id}', 'Admin\AdminController@savetopiad');
 
     Route::get('delete-daily/{id}', 'User\UserdataController@dailydelete');
+
+    Route::get('users', 'Admin\AdminController@users')->name('user');
+
+    Route::get('register-user', 'Admin\AdminController@create'); 
+
+    Route::get('edit-user/{id}', 'Admin\AdminController@edit_user');
+
+    Route::put('user-update/{id}', 'Admin\AdminController@update_user');
+
+    Route::get('delete-user/{id}', 'Admin\AdminController@delete_user');
+
+    Route::get('deleted-user', 'Admin\AdminController@trash');
+
+    Route::get('cash-page','CashInHandController@cashapage');
+
 
 });
 
@@ -94,7 +109,7 @@ Route::middleware(['auth'])->group(function(){
 
     // Route::get('user-dash', 'User\UserdataController@index');
         
-    Route::get('daily', 'User\UserdataController@daily');
+    Route::get('daily', 'User\UserdataController@daily')->name('daily');
 
     Route::get('orders', 'User\UserdataController@orders');
 

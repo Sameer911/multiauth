@@ -64,7 +64,7 @@ class UserdataController extends Controller
         $daily_order->entry_date = $request->input('entry_date');
  
             $daily_order->save();
-            return redirect()->back()->with('status', 'Data Added');
+            return redirect()->route('daily')->with('status', 'Data Added');
     }
 
 

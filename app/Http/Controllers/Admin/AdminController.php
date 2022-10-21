@@ -2,13 +2,16 @@
 
 namespace App\Http\Controllers\Admin;
 
+use Illuminate\Support\Facades\Hash;
 use App\CashInHand;
 use App\Credit;
+use App\User;
 use App\DailyOrder;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\PaidOrder;
 use \Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Auth;
 class AdminController extends Controller
 {
     public function index()
@@ -97,7 +100,6 @@ class AdminController extends Controller
     {
         $paid = PaidOrder::find($id);
 
-        $paid = new PaidOrder();
         if($request->hasFile('image'))
         {
             $des = 'images'.$paid->image;
@@ -174,6 +176,67 @@ class AdminController extends Controller
         return redirect()->route('login');
        }
 
+
+    //    For Uers
+
+       public function create(Request $request)
+       {
+            $new_user = new User();
+
+            $new_user->name  = $request->input('name');
+            $new_user->email = $request->input('email');
+            $new_user->email = $request->input('email');
+            $new_user->password = $request->input('password');
+
+
+
+            $new_user->save();
+ 
+
+            return view('admin.adduser');
+       }
+
+
+       public function users()
+       {
+            $users = User::all();
+            return view('admin.users', compact('users'));
+       }
+
+       public function edit_user($id)
+       {
+            $user = User::find($id);
+            return view('admin.useredit' ,compact('user'));
+       }
+
+       public function update_user(Request $request, $id)
+       {
+
+            $user_update = User::find($id);
+
+            $user_update->name = $request->input('name');
+
+            $user_update->email = $request->input('email');
+
+            $user_update->update();
+
+            return redirect()->route('user');
+       }
+
+       public function delete_user($id)
+       {
+            $delet_user = User::find($id)->delete();
+            Return redirect()->route('user');
+       }
+
+      public function trash()
+      {
+        $trash = User::onlyTrashed()->get();
+
+        return view('admin.deleteduser', compact('trash'));
+      }
+
+    
       
 
 }

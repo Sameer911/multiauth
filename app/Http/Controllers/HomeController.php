@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use App\CashInHand;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -25,7 +27,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $Cashinhand = cashInHandAmount();
+        return view('home', compact('Cashinhand'));
     }
 
         
