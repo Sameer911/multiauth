@@ -25,6 +25,7 @@ class CashInHandController extends Controller
 
             $debit->debit = $request->input('debit');
             $debit->credit = $request->input('credit');
+            $debit->user_id = $request->input('user_id');
             $debit->description = $request->input('description');
 
             $debit->save();

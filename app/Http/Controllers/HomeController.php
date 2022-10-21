@@ -27,7 +27,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $Cashinhand = cashInHandAmount();
+        $Cashinhand = cashInHandAmountByUser(Auth::user()->id);
         return view('home', compact('Cashinhand'));
     }
 

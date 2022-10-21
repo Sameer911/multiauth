@@ -14,4 +14,8 @@ class CashInHand extends Model
         'credit',
         'description',
     ];
+
+    public function user(){
+        return $this->belongsTo('App\User');
+    }
 }

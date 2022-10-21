@@ -82,6 +82,7 @@
                                             <td>ID</td>
                                             <td>Debit</td>
                                             <td>Credit</td>
+                                            <td>User</td>
                                             <td>Description</td>
                                             <td>Action</td>
                                         </tr>
@@ -92,6 +93,7 @@
                                                 <td>{{ $item->id }}</td>
                                                 <td>{{ $item->debit }}</td>
                                                 <td><?php echo number_format($item->credit); ?></td>
+                                                <td>{{ $item->user->name }}</td>
                                                 <td>{{ $item->description }}</td>
 
                                                 <td>

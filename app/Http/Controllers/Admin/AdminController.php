@@ -48,12 +48,13 @@ class AdminController extends Controller
 
     public function paid()
     {
-        $paid_orders = PaidOrder::orderBy('created_at', 'desc')->get();
+        $paid_orders = PaidOrder::where('user_id',Auth::user()->id) ->orderBy('created_at', 'desc')->get();
         return view('admin.paidorder', compact('paid_orders'));
     }
 
     public function insertpaid(Request $request)
     {
+        $userId = Auth::user()->id;
         $paid = new PaidOrder();
         if($request->hasFile('image'))
         {
@@ -68,6 +69,7 @@ class AdminController extends Controller
         // $paid->p_date = $request->input('p_date');
         $paid->order_id = $request->input('order_id');
         $paid->amount = $request->input('amount');
+        $paid->user_id = $userId;
         $paid->save();
 
         $order_id = $request->input('order_id');
@@ -80,6 +82,7 @@ class AdminController extends Controller
             $cash_in_hand->debit = $request->input('amount');
             $description = 'This Amount paid to ' . $order->receiver . '('.$order->cnic.')';
             $cash_in_hand->description= $description;
+            $cash_in_hand->user_id = $userId;
             $cash_in_hand->save();
         }
 

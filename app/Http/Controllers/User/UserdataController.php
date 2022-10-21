@@ -8,39 +8,20 @@ use Illuminate\Http\Request;
 use Symfony\Component\Console\Input\Input;
 use App\CashInHand;
 use App\PaidOrder;
+use Illuminate\Support\Facades\Auth;
 
 class UserdataController extends Controller
 {
     public function index()
     {
-        $Cashinhand = $this->cal();
+        $Cashinhand = cashInHandAmountByUser(Auth::user()->id);
         return view('user.index', compact('Cashinhand'));
     }
 
-    public function cal()
-    {
-        $debit = 0;
-        $credit = 0;
-        $all = CashInHand::orderBy('created_at', 'desc')->get();
-
-        foreach ($all as $key => $value) {
-            if (!empty($value->credit)) {
-                $credit += $value->credit;
-            }
-
-            if (!empty($value->debit)) {
-                $debit += $value->debit;
-            }
-            $number = $credit - $debit;
-            $format = number_format($number, 2, '.', ',');
-            $result = $format;;
-        }
-            return $result;
-    }
 
     public function daily()
     {
-        $daily = DailyOrder::orderBy('created_at', 'desc')->get();
+        $daily = DailyOrder::where('user_id',Auth::user()->id)->orderBy('created_at', 'desc')->get();
         return view('user.daily',compact('daily'));
     }
 
@@ -101,7 +82,7 @@ class UserdataController extends Controller
 
     public function paidorderu()
     {
-        $paid_orders = PaidOrder::orderBy('created_at', 'desc')->get();
+        $paid_orders = PaidOrder::where('user_id',Auth::user()->id)->orderBy('created_at', 'desc')->get();
         return view('user.paidorder', compact('paid_orders'));
     }
 
