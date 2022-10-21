@@ -20,4 +20,8 @@ class PaidOrder extends Model
     {
         return $this->belongsTo('App\DailyOrder');
     }
+
+    public function user(){
+        return $this->belongsTo('App\User');
+    }
 }
