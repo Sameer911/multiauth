@@ -212,7 +212,7 @@
       @section('scripts')
 
       <script>
-       
+       var balance = 0;
         $(document).ready(function() {
 
 
@@ -247,8 +247,9 @@
                     $('#cnic').html(response.savetopaid.cnic);
                     $('#sender').html(response.savetopaid.sender);
                     $('#city').html(response.savetopaid.city);
-                    $('#balance').html(response.savetopaid.amount);
+                    $('#balance').html();
                     $('#order_id').val(save_id);
+                     balance = parseFloat(response.savetopaid.amount);
 
                 }
             });
@@ -266,7 +267,16 @@
         console.log('modal is hidden');
         stopCamera();
     });
-
+    $(document).on('keyup','input[name="amount"]',function(){
+        let enterdAmount = parseFloat($(this).val());
+        if(enterdAmount){ 
+            let finalAmount = balance - enterdAmount;
+            $('#balance').text(finalAmount);
+            console.log(enterdAmount);
+        }else{
+            $('#balance').html(balance);
+        }
+    });
 
     function getMedia() {
         return new Promise((resolve, reject) => {

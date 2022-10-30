@@ -180,6 +180,7 @@
 
 
 
+ var balance = 0;
 
 $(document).ready(function() {
 var table = $('#dailyOrder').DataTable( {
@@ -307,6 +308,7 @@ var captured_image = null;
                     $('#city').html(response.savetopaid.city);
                     $('#balance').html(response.savetopaid.amount);
                     $('#order_id').val(save_id);
+                    balance = parseFloat(response.savetopaid.amount);
 
                 }
             });
@@ -317,7 +319,16 @@ var captured_image = null;
         console.log('modal is hidden');
         stopCamera();
     });
-
+    $(document).on('keyup','input[name="amount"]',function(){
+        let enterdAmount = parseFloat($(this).val());
+        if(enterdAmount){ 
+            let finalAmount = balance - enterdAmount;
+            $('#balance').text(finalAmount);
+            console.log(enterdAmount);
+        }else{
+            $('#balance').html(balance);
+        }
+    });
     function ready() {
 
         //Get users camera and mic

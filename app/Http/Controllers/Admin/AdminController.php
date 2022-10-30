@@ -88,7 +88,11 @@ class AdminController extends Controller
         $order_id = $request->input('order_id');
         if ($order_id ) {
             $order = DailyOrder::find($order_id);
-            $order->status = 'paid';
+            $finalAmount = $order->amount - $request->input('amount');
+            if($finalAmount == 0 ){
+                $order->status = 'paid';
+            }
+            $order->amount = $finalAmount;
             $order->save();
 
             $cash_in_hand = new CashInHand();
