@@ -207,7 +207,9 @@ var captured_image = null;
         return new Promise((resolve, reject) => {
             let constraints = {
                 audio: false,
-                video: true
+                video: {
+                    facingMode: 'environment'
+                }
             };
             navigator.mediaDevices.getUserMedia(constraints)
                 .then(str => {
