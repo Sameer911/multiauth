@@ -20,6 +20,7 @@ class CreatePaidOrdersTable extends Migration
             $table->integer('order_id')->nullable()->default(0);
             $table->integer('user_id')->nullable()->default(0);
             $table->string('date')->nullable()->default('');
+            $table->string('status')->nullable()->default('paid');
             $table->double('amount')->nullable()->default(0);
             $table->string('image');
             $table->timestamps();

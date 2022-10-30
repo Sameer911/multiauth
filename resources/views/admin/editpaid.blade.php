@@ -53,17 +53,17 @@
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <label for="amount">Amount</label>
-                                <input type="number" class="form-control" value="{{$paid->amount}}" name="amount">
+                                <input type="number" class="form-control" value="{{$paid->order->amount}}" name="amount">
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="paid">Paid</label>
-                                <input type="number" class="form-control" value="{{$paid->order->amount}}" name="paid">
+                                <input type="number" class="form-control" value="{{$paid->amount}}" name="paid">
                             </div>
                         </div> 
                         <div class="form-row">
                             <div class="form-group col-md-12">
                                 <label for="balance">Balance</label>
-                                <input type="number" class="form-control" value="{{$paid->order->amount}}" name="balance">
+                                <input type="number" class="form-control" value="{{$paid->amount}}" name="balance">
                             </div>
                            
                         </div> 

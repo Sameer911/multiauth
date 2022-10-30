@@ -1,34 +1,82 @@
-{{-- @extends('layouts.user')
-
-@section('content')
-    
-    <div class="card">
-        <div class="card-body">
-            <h1>User Home Page</h1>
-        </div>
-    </div>
 
 
-    <div class="container mt-5">
-        <div class="col-xl-3 col-md-6 mb-4">
-            <div class="card border-left-success shadow h-100 py-2">
-                <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                        <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                               Cash In Hand</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                {{$Cashinhand}}
-                            </div>
-                        </div>
-                        <div class="col-auto">
-                            <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 
 
-@endsection --}}
+ @extends('layouts.user')
+
+ @section('content')
+     
+ 
+ <section class="section">
+     <div class="row ">
+       <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-xs-12">
+         <div class="card">
+           <div class="card-statistic-4">
+             <div class="align-items-center justify-content-between">
+               <div class="row ">
+                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 pr-0 pt-3">
+                   <div class="card-content">
+                     <h5 class="font-15">Cash In Hand</h5>
+                     <h2 class="mb-3 font-18">{{$Cashinhand}}  PKR</h2>
+                   </div>
+                 </div>
+                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 pl-0">
+                   <div class="banner-img">
+                     <img src="assets/img/banner/1.png" alt="">
+                   </div>
+                 </div>
+               </div>
+             </div>
+           </div>
+         </div>
+       </div>
+       <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-xs-12">
+         <div class="card">
+           <div class="card-statistic-4">
+             <div class="align-items-center justify-content-between">
+               <div class="row ">
+                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 pr-0 pt-3">
+                   <div class="card-content">
+                     <h5 class="font-15"> Pending Order</h5>
+                     <h2 class="mb-3 font-18">{{$pendingOrders}}</h2>
+                   </div>
+                 </div>
+                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 pl-0">
+                   <div class="banner-img">
+                     <img src="assets/img/banner/2.png" alt="">
+                   </div>
+                 </div>
+               </div>
+             </div>
+           </div>
+         </div>
+       </div>
+       <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-xs-12">
+         <div class="card">
+           <div class="card-statistic-4">
+             <div class="align-items-center justify-content-between">
+               <div class="row ">
+                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 pr-0 pt-3">
+                   <div class="card-content">
+                     <h5 class="font-15">Paid Orders</h5>
+                     <h2 class="mb-3 font-18">{{$paidOrders}}</h2>
+                     </div>
+                 </div>
+                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 pl-0">
+                   <div class="banner-img">
+                     <img src="assets/img/banner/3.png" alt="">
+                   </div>
+                 </div>
+               </div>
+             </div>
+           </div>
+         </div>
+       </div>
+   </div>
+     
+     
+ </section>
+ 
+ 
+ @endsection
+ 

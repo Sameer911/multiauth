@@ -143,7 +143,7 @@
                         <td>{{formatNumber($item->amount)}}</td>
                         <td>{{formatNumber($item->order->balance)}}</td>
                         <td>
-                          <a href="" >
+                          <a href="{{url('image-view/'.$item->id)}}">
                           <div id="results"><img src="{{ asset('images/'. $item->image) }}" alt="Image" width="50"></div>
                           
                           </a>
@@ -194,6 +194,7 @@
               'pdf', 'print'
           ]
       } );
+      table.rowReorder.disable();
       });
     </script>
 

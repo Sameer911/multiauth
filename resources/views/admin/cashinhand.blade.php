@@ -212,6 +212,7 @@
                     'pdf', 'print'
                 ]
             });
+            table.rowReorder.disable();
         });
 
        

@@ -14,6 +14,7 @@
         <div class="card">
           <div class="card-header">
             <h4>Paid Orders Table</h4>
+            
             {{-- <a href="{{url('add-daily-data')}}" class="btn btn-primary btn-sm float-end">Add</a> --}}
           </div>
           <div class="card-body">
@@ -33,7 +34,7 @@
                     <td>Paid</td>
                     <td>Balance</td>
                     <td>image</td>
-                    <td>Action</td>
+                    {{-- <td>Action</td> --}}
                   </tr>
                 </thead>
                 <tbody>
@@ -50,19 +51,23 @@
                     <td>{{formatNumber($item->amount)}}</td>
                     <td>{{formatNumber($item->order->balance)}}</td>
                     <td>
-                      <a href=""  data-bs-toggle="modal" data-bs-target="#exampleModal">
+                      {{-- <a href="{{url('img-view/' . $item->id)}}"  >
                       <div id="results"><img src="{{ asset('images/'. $item->image) }}" alt="Image" width="50"></div>
                       
+                      </a> --}}
+                      <a href="{{url('edit-image/'.$item->id)}}">
+                      <div id="results"><img src="{{ asset('images/'. $item->image) }}" alt="Image" width="50"></div>
+
                       </a>
-                      
+
                     </td>
                   
-                    <td>
+                    {{-- <td>
                       <a href="{{url('edit-paidorder/'.$item->id)}}" class="btn btn-primary btn-sm">Edit</a>
                       <a href="{{url('delete/'.$item->id)}}" class="btn btn-danger btn-sm">Delete</a>
 
 
-                    </td>
+                    </td> --}}
                     
                   </tr>
                   @endforeach
@@ -103,6 +108,7 @@ var table = $('#paidTable').DataTable( {
               'pdf', 'print'
           ]
 } );
+table.rowReorder.disable();
 });
 
 

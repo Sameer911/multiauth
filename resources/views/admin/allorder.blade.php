@@ -94,10 +94,27 @@
         </div>
     </div>
 
-<!-- END--Save--Modal -->
+    <!-- END--Save--Modal -->
 
 
 @section('content')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         
 
@@ -115,6 +132,16 @@
               <h4>Orders Table</h4>
               <a href="{{url('add-daily-data')}}" class="btn btn-primary btn-sm float-end">Add</a>
             </div>
+
+            <div class="col-sm-12 form-group">
+                <form action="{{url('date-search')}}">
+                    @csrf
+                    <input type="text" name="datefilter" value="" />
+                </form>
+                
+                {{-- <input type="text" name="daterange" id="daterange" class="form-control" value="10/01/2022 - 10/15/2022" /> --}}
+            </div>
+
             <div class="card-body">
               <div class="table-responsive">
                 <table class="table table-striped" id="allOrders">
@@ -129,6 +156,7 @@
                         <td>Date</td>
                         <td>CNIC</td>
                         <td>Amount</td>
+                        {{-- <td>User Name</td>  --}}
                         <td>Status</td>
                         <td>Action</td>
                         <td>Save</td>
@@ -146,16 +174,20 @@
                             <td>{{$item->date}}</td>
                             <td>{{$item->cnic}}</td>
                             <td>{{formatNumber($item->amount)}}</td>
+                            {{-- <td>{{$item->user->name}}</td> --}}
                             <td>{{$item->status}}</td>
                             <td>
                                 <a href="{{url('editallorder/'.$item->id)}}" class="btn btn-primary btnedit btn-sm">Edit</a>
-                                <a href="{{ url('delete/' . $item->id) }}" class="btn btn-danger btn-sm">Delete</a>
+                                <a href="{{ url('delete-daily/' . $item->id) }}" class="btn btn-danger btn-sm">Delete</a>
                             </td>
                             <td>
+                                @if ($item->status != 'cancel')
                                 <button type="button" value="{{$item->id}}" class="btn btn-success savebtn btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal">
                                     Save
                                 </button>
-                            </td>        
+                                @endif
+                            </td> 
+                                  
                         </tr>   
                     @endforeach
                 </tbody>
@@ -195,6 +227,8 @@
                 'pdf', 'print'
             ]
         } );
+        table.rowReorder.disable();
+        
 
         $(document).on('click', '.savebtn', function() {
             var save_id = $(this).val();
@@ -364,6 +398,50 @@
         $(document).on('click','.btn-close',function(){
             $('#ModalSave').modal('hide');    
         });
+
+
+        $(function() {
+
+$('input[name="datefilter"]').daterangepicker({
+    autoUpdateInput: false,
+    locale: {
+        cancelLabel: 'Clear'
+    }
+});
+
+$('input[name="datefilter"]').on('apply.daterangepicker', function(ev, picker) {
+    $(this).val(picker.startDate.format('MM/DD/YYYY') + ' - ' + picker.endDate.format('MM/DD/YYYY'));
+});
+
+$('input[name="datefilter"]').on('cancel.daterangepicker', function(ev, picker) {
+    $(this).val('');
+});
+
+});
+
+$(document).click('#btn', function(e) {
+
+e.preventDefault(); // avoid to execute the actual submit of the form.
+
+var form = $(this);
+var actionUrl = form.attr('action');
+
+$.ajax({
+    type: "POST",
+    url: actionUrl,
+    data: form.serialize(), // serializes the form's elements.
+    success: function(data)
+    {
+    //   alert(data); // show response from the php script.
+    console.log(data);
+    }
+});
+
+});
+
+
+        
+
       </script>
 
 @endsection

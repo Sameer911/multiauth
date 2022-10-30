@@ -18,10 +18,10 @@ class PaidOrder extends Model
 
     public function order()
     {
-        return $this->belongsTo('App\DailyOrder');
+        return $this->belongsTo('App\DailyOrder')->withTrashed();
     }
 
     public function user(){
-        return $this->belongsTo('App\User');
+        return $this->belongsTo('App\User')->withTrashed();
     }
 }

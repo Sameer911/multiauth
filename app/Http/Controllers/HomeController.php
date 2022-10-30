@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\CashInHand;
+use App\DailyOrder;
+use App\PaidOrder;
+use App\User;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -28,14 +31,19 @@ class HomeController extends Controller
     public function index()
     {
         $Cashinhand = cashInHandAmountByUser(Auth::user()->id);
-        return view('home', compact('Cashinhand'));
+        $pendingOrders = DailyOrder::where('status', 'pending')->where('user_id', Auth::user()->id)->count();
+        $paidOrders = DailyOrder::where('status', 'paid')->where('user_id', Auth::user()->id)->count();
+        return view('home', compact('Cashinhand','pendingOrders', 'paidOrders'));
     }
 
         
    public function adminhome()
    {
         $Cashinhand = cashInHandAmount();
-        return view('admin.index' ,compact('Cashinhand'));
+        $pendingOrders = DailyOrder::all()->count();
+        $paidOrders = PaidOrder::where('status', '=', 'paid')->count();
+        $users = User::all();
+        return view('admin.index' ,compact('Cashinhand', 'pendingOrders', 'paidOrders','users'));
    }
 
     public function logout()

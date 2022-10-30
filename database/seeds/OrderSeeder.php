@@ -15,23 +15,23 @@ class OrderSeeder extends Seeder
      */
     public function run()
     {
-        $faker = Faker::create();
-        for($i = 1; $i <= 10; $i++){
-            $order = New DailyOrder;
-            $order->order = random_int(1,10);
-            $order->date = $faker->date;
-            $order->city = $faker->city;
-            $order->sender = $faker->name;
-            $order->receiver = $faker->name;
-            $order->father_name = $faker->name;
-            $order->cnic = "000";
-            $order->amount = "000";
-            $order->status = "pending";
-            $order->user_id = "1";
-            $order->entry_date = $faker->date;
+        // $faker = Faker::create();
+        // for($i = 1; $i <= 10; $i++){
+        //     $order = New DailyOrder;
+        //     $order->order = random_int(1,10);
+        //     $order->date = $faker->date;
+        //     $order->city = $faker->city;
+        //     $order->sender = $faker->name;
+        //     $order->receiver = $faker->name;
+        //     $order->father_name = $faker->name;
+        //     $order->cnic = "000";
+        //     $order->amount = "000";
+        //     $order->status = "pending";
+        //     $order->user_id = "1";
+        //     $order->entry_date = $faker->date;
     
-            $order->save();
-        }
+        //     $order->save();
+        // }
   
     }
 }

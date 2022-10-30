@@ -64,20 +64,20 @@
                          
                       </div>     
                       <div class="form-row">
-                          {{-- <div class="form-group col-md-6">
-                              <label for="status">Status</label>
-                              <input type="text" class="form-control"  name="status" placeholder="Status" required>
-                          </div> --}}
-                          {{-- <div class="form-group col-md-6">
-                              <label for="user_id">User ID</label>
-                              <input type="text" class="form-control"  name="user_id" placeholder="User ID" required>
-                          </div> --}}
-                      
-                       <div class="form-group col-md-12">
-                          <label for="Amount">Amount</label>
-                          <input type="number" class="form-control"  name="amount" placeholder="Amount" required>
-                      </div>
-                      </div>   
+                        <div class="form-group col-md-6">
+                           <label for="Amount">Amount</label>
+                           <input type="number" class="form-control"  required name="amount" placeholder="Amount" required>
+                       </div>
+                         <div class="form-group col-md-6 mb-3">
+                         <label for="user_id">User id</label>    
+                         <select class="form-control" name="user_id" required aria-label="Default select example">
+                                 <option value="">Select User</option>
+                                 @foreach ($users as $item)
+                                 <option value="{{$item->id}}">{{$item->name}}</option>
+                                 @endforeach
+                             </select>
+                         </div>
+                       </div>    
             
                             <div class="col-md-12">
                                 <button type="submit" class="btn btn-primary btn-block">Submit</button>

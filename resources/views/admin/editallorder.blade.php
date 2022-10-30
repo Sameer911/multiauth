@@ -62,7 +62,11 @@
                             <div class="form-row">
                                 <div class="form-group col-md-6">
                                     <label for="status">Status</label>
-                                    <input type="text" class="form-control" value="{{$all_orders->status}}" name="status" placeholder="Status">
+                                    <select class="form-control" name="status" required aria-label="Default select example">   
+                                        <option value="pending">Pending</option>
+                                        <option value="cancel">Cancel</option>
+                                    </select>
+                                   
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="Amount">Amount</label>
@@ -89,7 +93,7 @@
         </div>
     </div>
 
-
+    
     
 
 @endsection

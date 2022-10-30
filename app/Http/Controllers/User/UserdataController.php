@@ -12,10 +12,15 @@ use Illuminate\Support\Facades\Auth;
 
 class UserdataController extends Controller
 {
+
+
+    
     public function index()
     {
         $Cashinhand = cashInHandAmountByUser(Auth::user()->id);
-        return view('user.index', compact('Cashinhand'));
+        $pendingOrders = DailyOrder::where('status', 'pending')->where('user_id', Auth::user()->id)->count();
+        $paidOrders = DailyOrder::where('status', 'paid')->where('user_id', Auth::user()->id)->count();
+        return view('user.index', compact('Cashinhand', 'pendingOrders', 'paidOrders'));
     }
 
 
@@ -75,9 +80,13 @@ class UserdataController extends Controller
         $daily->entry_date = $request->input('entry_date');
 
         $daily->update();
-        return redirect()->back()->with('status', 'Data Update Successfully');
+        return redirect()->route('allorders')->with('status', 'Data Update Successfully');
         
     }
+
+        
+
+
 
 
     public function paidorderu()
@@ -93,6 +102,7 @@ class UserdataController extends Controller
                 'status'=>200,
                 'savetopaid'=>$savetopaid,
             ]);
+
        }
 
        public function adddaily()
@@ -105,5 +115,53 @@ class UserdataController extends Controller
             return view('user.addpaid');
        }
 
+
+       public function paidinsert(Request $request)
+       {
+           $userId = Auth::user()->id;
+           $paid = new PaidOrder();
+           if($request->hasFile('image'))
+           {
+               $file =$request->file('image');
+               $ext = $file->getClientOriginalExtension();
+               $filename = time(). '.' . $ext;
+               $file->move('images/',$filename);
+               $paid->image = $filename;
+           }
+   
+           $paid->date = $request->input('date');
+           // $paid->p_date = $request->input('p_date');
+           $paid->order_id = $request->input('order_id');
+           $paid->amount = $request->input('amount');
+           $paid->user_id = $userId;
+           $paid->save();
+   
+           $order_id = $request->input('order_id');
+           if ($order_id ) {
+               $order = DailyOrder::find($order_id);
+               $order->status = 'paid';
+               $order->save();
+   
+               $cash_in_hand = new CashInHand();
+               $cash_in_hand->debit = $request->input('amount');
+               $description = 'This Amount paid to ' . $order->receiver . '('.$order->cnic.')';
+               $cash_in_hand->description= $description;
+               $cash_in_hand->user_id = $userId;
+               $cash_in_hand->save();
+           }
+   
+           
+           
+            
+           return redirect()->back()->with('status', 'Data Inserted');
+       } 
+
+    
+
+       public function view_image($id)
+       {
+            $paid = PaidOrder::find($id);
+            return view('user.editimage', compact('paid'));
+       }
 
 }

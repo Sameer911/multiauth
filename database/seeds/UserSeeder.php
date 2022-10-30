@@ -29,16 +29,16 @@ class UserSeeder extends Seeder
         // $user->is_admin = 0;
 
         // $user->save();
-        DB::table('users')->insert([
-            'name' => 'User',
-            'email' => 'user@user.com',
-            'password' => Hash::make('password'),
-        ]);
+        // DB::table('users')->insert([
+        //     'name' => 'User',
+        //     'email' => 'user@user.com',
+        //     'password' => Hash::make('password'),
+        // ]);
         DB::table('users')->insert([
             'name' => 'admin',
             'email' => 'admin@admin.com',
             'is_admin' => '1',
-            'password' => Hash::make('password'),
+            'password' => Hash::make('11223344'),
         ]);
     }
 }

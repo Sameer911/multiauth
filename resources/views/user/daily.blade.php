@@ -1,7 +1,6 @@
 @extends('layouts.user')
 
 
-
 @section('content')
 
 
@@ -59,11 +58,21 @@
                                         <a href="{{ url('delete-daily/' . $item->id) }}" class="btn btn-danger btn-sm">Delete</a>
                                     </td> --}}
                                     <td>
+                                        @if ($item->status != 'cancel')
                                         <button type="button" value="{{ $item->id }}" class="btn btn-success btnsave btn-sm"
                                             data-bs-toggle="modal" data-bs-target="#exampleModal">
                                             Pay Order
                                         </button>
+                                        @endif
+                                        
                                     </td>
+                                    
+                                    {{-- <td>
+                                        <button type="button" value="{{ $item->id }}" class="btn btn-success btnsave btn-sm"
+                                            data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                            Pay Order
+                                        </button>
+                                    </td> --}}
             
                                 </tr>
                             @endforeach
@@ -184,6 +193,7 @@ var table = $('#dailyOrder').DataTable( {
               'pdf', 'print'
           ]
 } );
+table.rowReorder.disable();
 });
 
 var captured_image = null;

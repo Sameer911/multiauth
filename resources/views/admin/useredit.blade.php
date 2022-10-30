@@ -32,6 +32,16 @@
             
                             </div>
                         </div>
+
+                        <div class="form-row">
+
+                          <div class="form-group col-md-6">
+                              <label for="password">Password</label>
+                              <input type="password" class="form-control"  name="password">
+          
+                          </div>
+                      </div>
+
  
                            <div class="col-md-6">
                                 <button type="submit" class="btn btn-primary ">Submit</button>
